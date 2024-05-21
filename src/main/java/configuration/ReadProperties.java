@@ -21,9 +21,9 @@ public class ReadProperties {
         return properties.getProperty("baseUrl");
     }
 
-    public static String getLoginUrl() {
-        return getBaseUrl()+properties.getProperty("loginUrl");
-    }
+//    public static String getLoginUrl() {
+//        return getBaseUrl()+properties.getProperty("loginEndpoint");
+//    }
 
     public static String getUsername() {
         return properties.getProperty("username");
@@ -31,5 +31,13 @@ public class ReadProperties {
 
     public static String getPassword() {
         return properties.getProperty("password");
+    }
+
+    public static String getBrowser() {
+        return properties.getProperty("browser");
+    }
+
+    public static int getTimeout() {
+        return Integer.parseInt(properties.getProperty("timeout"));
     }
 }
