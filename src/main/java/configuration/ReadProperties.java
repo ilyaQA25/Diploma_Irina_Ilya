@@ -17,8 +17,11 @@ public class ReadProperties {
 
     }
 
-    public static String getBaseUrl() {
-        return properties.getProperty("baseUrl");
+    public static String getUrl() {
+        return properties.getProperty("url");
+    }
+    public static String getBaseApiUrl() {
+        return properties.getProperty("baseApiUrl");
     }
 
 //    public static String getLoginUrl() {
@@ -39,5 +42,9 @@ public class ReadProperties {
 
     public static int getTimeout() {
         return Integer.parseInt(properties.getProperty("timeout"));
+    }
+
+    public static String getApiKey() {
+        return properties.getProperty("xApiKey");
     }
 }
