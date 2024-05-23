@@ -18,6 +18,8 @@
         <restAssure.version>5.4.0</restAssure.version>
         <selenium.version>4.19.1</selenium.version>
         <driverManager.version>5.8.0</driverManager.version>
+        <gson.version>2.10.1</gson.version>
+        <javafaker.version>1.0.2</javafaker.version>
     </properties>
     <dependencies>
         <dependency>
@@ -49,6 +51,16 @@
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${restAssure.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
         </dependency>
     </dependencies>
 

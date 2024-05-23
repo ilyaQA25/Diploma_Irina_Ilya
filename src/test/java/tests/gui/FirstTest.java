@@ -10,6 +10,6 @@ public class FirstTest {
     public void test() {
         BrowserServices browserServices = new BrowserServices();
         WebDriver driver = browserServices.getDriver();
-        driver.get(ReadProperties.getBaseUrl());
+        driver.get(ReadProperties.getUrl());
     }
 }
