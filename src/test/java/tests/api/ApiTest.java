@@ -30,11 +30,8 @@ public class ApiTest extends BaseApiTest {
 
     @Test(testName = "Add case to project", description = "normal flow", dependsOnMethods = "createProjectTest")
     public void addCaseTest() {
-//        Project createdProject = actualProject;
         expectedTestCase = TestCase.builder().title("Added via api call").projectID(actualProject.getId()).build();
         actualAddedCase = testCaseService.addCase(expectedTestCase);
-//        System.out.println("by api call "+ actualAddedCase.getId());
-//        System.out.println("init "+ expectedCase.getId());
 
         Assert.assertEquals(actualAddedCase, expectedTestCase);
     }
