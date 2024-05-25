@@ -1,8 +1,10 @@
 package wrappers;
 
+import configuration.ReadProperties;
 import org.openqa.selenium.*;
 import services.WaitServices;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class UiElement implements WebElement {
 
     private UiElement(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WaitServices(driver);
+        this.wait = new WaitServices(driver, Duration.ofSeconds(ReadProperties.getTimeout()));
     }
 
     public UiElement(WebDriver driver, By locator) {

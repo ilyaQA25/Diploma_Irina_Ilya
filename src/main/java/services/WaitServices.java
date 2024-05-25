@@ -14,6 +14,12 @@ public class WaitServices {
     private Duration timeout;
     private WebDriverWait driverWait;
 
+    public WaitServices(WebDriver driver, Duration duration) {
+        this.driver = driver;
+        this.timeout = Duration.ofSeconds(ReadProperties.getTimeout());
+        this.driverWait = new WebDriverWait(this.driver, this.timeout);
+    }
+
     public WaitServices(WebDriver driver) {
         this.driver = driver;
         this.timeout = Duration.ofSeconds(ReadProperties.getTimeout());

@@ -9,26 +9,40 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.time.Duration;
+
 public class BrowserServices {
     private WebDriver driver = null;
     private DriverManagerType driverManagerType;
 
     public BrowserServices() {
-        switch (ReadProperties.getBrowser()) {
+        switch (ReadProperties.getBrowser().toLowerCase()) {
             case "chrome":
                 driverManagerType = DriverManagerType.CHROME;
                 WebDriverManager.getInstance(driverManagerType).setup();
+
                 driver = new ChromeDriver(getChromeOptions());
                 break;
             case "firefox":
                 driverManagerType = DriverManagerType.FIREFOX;
                 WebDriverManager.getInstance(driverManagerType).setup();
-                driver = new FirefoxDriver();
+
+                driver = new FirefoxDriver(getFirefoxOptions());
+                break;
+            case "edge":
                 break;
             default:
-                System.out.println("Isn't supported: "+ReadProperties.getBrowser());
+                System.out.println("Browser " + ReadProperties.getBrowser() + " is not supported.");
                 break;
         }
+    }
+
+    public WebDriver getDriver() {
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ReadProperties.timeout()));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+        return driver;
     }
 
     private ChromeOptions getChromeOptions() {
@@ -38,20 +52,15 @@ public class BrowserServices {
         chromeOptions.addArguments("--silent");
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--incognito");
+        //chromeOptions.addArguments("--headless");
+
         return chromeOptions;
     }
+
     private FirefoxOptions getFirefoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addArguments("--disable-gpu");
-        firefoxOptions.addArguments("--ignore-certificate-errors");
-        firefoxOptions.addArguments("--silent");
-        firefoxOptions.addArguments("--start-maximized");
-        firefoxOptions.addArguments("--incognito");
-        return firefoxOptions;
-    }
+        firefoxOptions.addArguments();
 
-    public WebDriver getDriver() {
-        driver.manage().deleteAllCookies();
-        return driver;
+        return firefoxOptions;
     }
 }
