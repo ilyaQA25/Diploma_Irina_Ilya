@@ -4,6 +4,7 @@ import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import wrappers.UiElement;
 
 public class DashboardPage extends BasePage {
 
@@ -17,7 +18,7 @@ public class DashboardPage extends BasePage {
     private By leftSideBarTP = By.cssSelector("[data-testid='item-testplans']");
     private By leftSideBarTR = By.cssSelector("[data-testid='item-testruns']");
 
-    public DashboardPage(WebDriver driver) {
+    public DashboardPage(WebDriver driver, boolean b) {
         super(driver);
     }
 
@@ -26,8 +27,8 @@ public class DashboardPage extends BasePage {
         return null;
     }
 
-    public WebElement getTestCase() {
-        return waitsService.waitForVisibility(creatingTestCase);
+    public UiElement getTestCase() {
+        return new UiElement(driver, creatingTestCase);
     }
 
     public WebElement getTestRun() {
@@ -49,15 +50,15 @@ public class DashboardPage extends BasePage {
         return waitsService.waitForVisibility(inviteColleagues);
     }
 
-    public WebElement getLeftSideBarTC() {
-        return waitsService.waitForVisibility(leftSideBarTC);
+    public UiElement getLeftSideBarTC() {
+        return new UiElement(driver,leftSideBarTC);
     }
 
-    public WebElement getLeftSideBarTP() {
-        return waitsService.waitForVisibility(leftSideBarTP);
+    public UiElement getLeftSideBarTP() {
+        return new UiElement(driver, leftSideBarTP);
     }
 
-    public WebElement getLeftSideBarTR() {
-        return waitsService.waitForVisibility(leftSideBarTR);
+    public UiElement getLeftSideBarTR() {
+        return new UiElement(driver,leftSideBarTR);
     }
 }

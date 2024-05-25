@@ -5,6 +5,8 @@ import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import wrappers.Button;
+import wrappers.Input;
 
 public class LoginPage extends BasePage {
 
@@ -22,29 +24,40 @@ public class LoginPage extends BasePage {
         return emailInputLocator;
     }
 
-    public WebElement getEmailInput() {
-        return waitsService.waitForVisibility(emailInputLocator);
+    public Input getEmailInput() {
+        return new Input(driver, emailInputLocator);
     }
 
-    public WebElement getPswInput() {
-        return waitsService.waitForVisibility(pswInputLocator);
+    public Input getPasswordInput() {
+        return new Input(driver, pswInputLocator);
     }
 
-    public WebElement getLogInButton() {
-        return waitsService.waitForVisibility(logInButtonLocator);
+    public Button getLoginButton() {
+        return new Button(driver, logInButtonLocator);
     }
 
     public WebElement getErrorMessage(){
         return waitsService.waitForVisibility(errorMessageLocator);
     }
 
-    public void setEmail(String value) {
-        getEmailInput().sendKeys(value);
+    public LoginPage enterEmail(String email) {
+        getEmailInput().sendKeys(email);
+        return this;
     }
 
-    public void login(User user) {
-        setEmail(user.getEmail());
-        getPswInput().sendKeys(user.getPassword());
-        getLogInButton().click();
+    public LoginPage enterPassword(String password) {
+        getPasswordInput().sendKeys(password);
+        return this;
+    }
+
+    public void clickLoginButton() {
+        getLoginButton().click();
+    }
+
+    public DashboardPage successfulLogIn(User user) {
+        this.enterEmail(user.getEmail())
+                .enterPassword(user.getPassword())
+                .clickLoginButton();
+        return new DashboardPage(driver, true);
     }
 }
