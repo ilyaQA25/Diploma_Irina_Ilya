@@ -20,6 +20,12 @@ public class WaitServices {
         this.driverWait = new WebDriverWait(this.driver, this.timeout);
     }
 
+    public WaitServices(WebDriver driver) {
+        this.driver = driver;
+        this.timeout = Duration.ofSeconds(ReadProperties.getTimeout());
+        this.driverWait = new WebDriverWait(this.driver, this.timeout);
+    }
+
     public WebElement waitForVisibility(By locator) {
         return driverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
