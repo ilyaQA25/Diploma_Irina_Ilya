@@ -23,7 +23,7 @@ public class BaseTest {
         driver = new BrowserServices().getDriver();
         this.setDriverToContext(iTestContext, driver);
         waitsService = new WaitServices(driver);
-        driver.get(ReadProperties.getBaseUrl());
+        driver.get(ReadProperties.getUrl());
         loginPage = new LoginPage(driver);
     }
 
