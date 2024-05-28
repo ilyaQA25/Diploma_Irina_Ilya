@@ -19,7 +19,7 @@ public abstract class BasePage {
     protected abstract By getPageIdentifier();
 
     public boolean isPageOpened() {
-        return waitsService.waitForExistInDom(getPageIdentifier()).isDisplayed();
+        return waitsService.waitForVisibility(getPageIdentifier()).isDisplayed();
     }
 
     public void openPageByUrl(String pagePath) {

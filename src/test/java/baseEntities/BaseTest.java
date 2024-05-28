@@ -25,6 +25,10 @@ public class BaseTest {
         waitsService = new WaitServices(driver);
         driver.get(ReadProperties.getUrl());
         loginPage = new LoginPage(driver);
+        loginPage.enterEmail(ReadProperties.getUsername());
+        loginPage.enterPassword(ReadProperties.getPassword());
+        loginPage.clickLoginButton();
+        // loginPage.successfulLogIn();
     }
 
     @AfterMethod

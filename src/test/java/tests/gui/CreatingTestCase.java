@@ -1,4 +1,4 @@
-package tests.creatingTC;
+package tests.gui;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
@@ -10,8 +10,6 @@ import pages.LoginPage;
 import services.BrowserServices;
 
 public class CreatingTestCase extends BaseTest {
-
-
 
     @Test
     public void creatingTC() {

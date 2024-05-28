@@ -3,20 +3,21 @@ package pages;
 import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import wrappers.UiElement;
+import pages.casePages.AllCasePage;
+import wrappers.Button;
 
 public class DashboardPage extends BasePage {
-
     private By creatingTestCase = By.xpath("//h4[contains(text(),'Create test cases')]");
     private By creatingTestRun = By.xpath("//h4[contains(text(),'Create a test run')]");
-    private By creatingTestPlan = By.xpath("//h4[contains(text(),'Create a test plan')]");
-    private By creatingCustomFields = By.xpath("//h4[contains(text(),'Create custom fields')]");
-    private By setUpIntegrations = By.xpath("//h4[contains(text(),'Set up integrations')]");
-    private By inviteColleagues = By.xpath("//h4[contains(text(),'Invite colleagues')]");
+//    private By creatingTestPlan = By.xpath("//h4[contains(text(),'Create a test plan')]");
+//    private By creatingCustomFields = By.xpath("//h4[contains(text(),'Create custom fields')]");
+//    private By setUpIntegrations = By.xpath("//h4[contains(text(),'Set up integrations')]");
+//    private By inviteColleagues = By.xpath("//h4[contains(text(),'Invite colleagues')]");
     private By leftSideBarTC = By.cssSelector("[data-testid='item-testcases']");
-    private By leftSideBarTP = By.cssSelector("[data-testid='item-testplans']");
+//    private By leftSideBarTP = By.cssSelector("[data-testid='item-testplans']");
     private By leftSideBarTR = By.cssSelector("[data-testid='item-testruns']");
+
+    private By greetingMessageLocator = By.xpath("//h1[@data-testid='text-dashboard-header-content']");
 
     public DashboardPage(WebDriver driver, boolean b) {
         super(driver);
@@ -24,41 +25,53 @@ public class DashboardPage extends BasePage {
 
     @Override
     protected By getPageIdentifier() {
-        return null;
+        return greetingMessageLocator;
     }
 
-    public UiElement getTestCase() {
-        return new UiElement(driver, creatingTestCase);
+    public Button getCreateTestCaseButton() {
+        return new Button(driver, creatingTestCase);
     }
 
-    public WebElement getTestRun() {
-        return waitsService.waitForVisibility(creatingTestRun);
+    public Button getCreateTestRunButton() {
+        return new Button(driver, creatingTestRun);
     }
-    public WebElement getTestPlan() {
-        return waitsService.waitForVisibility(creatingTestPlan);
+//    public Button getCreateTestPlanButton() {
+//        return new Button(driver, creatingTestPlan);
+//    }
+
+//    public Button getCreateCustomFieldsButton() {
+//        return new Button(driver, creatingCustomFields);
+//    }
+
+//    public Button getSetUpIntegrationsButton() {
+//        return new Button(driver, setUpIntegrations);
+//    }
+//
+//    public Button getInviteColleaguesButton() {
+//        return new Button(driver, inviteColleagues);
+//    }
+
+    public Button getLeftSideBarTCButton() {
+        return new Button(driver, leftSideBarTC);
     }
 
-    public WebElement getCustomFields() {
-        return waitsService.waitForVisibility(creatingCustomFields);
+//    public Button getLeftSideBarTPButton() {
+//        return new Button(driver, leftSideBarTP);
+//    }
+
+    public Button getLeftSideBarTRButton() {
+        return new Button(driver, leftSideBarTR);
     }
 
-    public WebElement getSetUpIntegrations() {
-        return waitsService.waitForVisibility(setUpIntegrations);
+
+
+    public void clickCreateTestCaseButton() {
+        getCreateTestCaseButton().click();
     }
 
-    public WebElement getInviteColleagues() {
-        return waitsService.waitForVisibility(inviteColleagues);
+    public AllCasePage startTestCaseCreating() {
+        clickCreateTestCaseButton();
+        return new AllCasePage(driver);
     }
 
-    public UiElement getLeftSideBarTC() {
-        return new UiElement(driver,leftSideBarTC);
-    }
-
-    public UiElement getLeftSideBarTP() {
-        return new UiElement(driver, leftSideBarTP);
-    }
-
-    public UiElement getLeftSideBarTR() {
-        return new UiElement(driver,leftSideBarTR);
-    }
 }
