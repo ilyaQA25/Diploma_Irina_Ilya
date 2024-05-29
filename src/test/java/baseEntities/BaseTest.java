@@ -50,12 +50,10 @@ public class BaseTest {
         driver = new BrowserServices().getDriver();
         this.setDriverToContext(iTestContext, driver);
         waitsService = new WaitServices(driver);
+
         driver.get(ReadProperties.getUrl());
         loginPage = new LoginPage(driver);
-        loginPage.enterEmail(setupUser.getEmail());
-        loginPage.enterPassword(setupUser.getPassword());
-        loginPage.clickLoginButton();
-        // loginPage.successfulLogIn();
+        loginPage.successfulLogIn(setupUser);
         dashboardPage = new DashboardPage(driver, false);
         dashboardPage.selectProjectByText(setupProject.getName());
     }

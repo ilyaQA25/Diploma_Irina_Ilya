@@ -1,6 +1,7 @@
 package pages.casePages;
 
 import baseEntities.BasePage;
+import models.TestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,31 @@ public class AllCasePage extends BasePage {
         return new Button(driver, createNewTestLocator);
     }
 
+    private List<UiElement> getCaseTitleList() {
+        List <WebElement> webElementsList = waitsService.waitForVisibilityAllElements(caseTitleLocator);
+        List <UiElement> uiElementList = new ArrayList<>();
+        for (WebElement webElement: webElementsList) {
+            uiElementList.add(new UiElement(driver, webElement));
+        }
+        return uiElementList;
+    }
+
+    public boolean isCaseInGrid(TestCase testCase) {
+        for (UiElement uiElement: getCaseTitleList()) {
+            if (uiElement.getText().trim().equals(testCase.getTitle())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void openCase(TestCase testCase) {
+        for (UiElement uiElement: getCaseTitleList()) {
+            if (uiElement.getText().trim().equals(testCase.getTitle())) {
+                uiElement.click();
+            }
+        }
+    }
 
     public void clickCreateFirstCaseButton() {
         getCreateFirstCaseButton().click();
