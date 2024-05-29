@@ -86,7 +86,7 @@ public class UiElement implements WebElement {
 
     public List<UiElement> findUiElements(By locator) {
         List<UiElement> uiElementsList = new ArrayList<UiElement>();
-        for (WebElement webElement : findElements(locator)) {
+        for (WebElement webElement : this.findElements(locator)) {
             uiElementsList.add(new UiElement(driver, webElement));
         }
         return uiElementsList;
