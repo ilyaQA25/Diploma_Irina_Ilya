@@ -3,13 +3,19 @@ package pages.casePages;
 import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import wrappers.Button;
+import wrappers.UiElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllCasePage extends BasePage {
     private By createFirstTestLocator = By.xpath("//button[@data-testid='button-add_TC']");
     private By allCasesTitleLocator = By.xpath("//h2[@data-testid='text-title']");
-
     private By createNewTestLocator = By.xpath("//button[@data-testid='button-add']");
+    private By caseTitleLocator = By.xpath("//div[@data-testid='cell-title']");
+
     public AllCasePage(WebDriver driver) {
         super(driver);
     }
@@ -27,6 +33,7 @@ public class AllCasePage extends BasePage {
         return new Button(driver, createNewTestLocator);
     }
 
+
     public void clickCreateFirstCaseButton() {
         getCreateFirstCaseButton().click();
     }
@@ -42,4 +49,5 @@ public class AllCasePage extends BasePage {
     public void createNewCase() { // void????
         clickCreateNewTestButton();
     }
+
 }

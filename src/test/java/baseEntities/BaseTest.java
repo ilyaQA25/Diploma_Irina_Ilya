@@ -1,14 +1,17 @@
 package baseEntities;
 
+import com.github.javafaker.Faker;
 import configuration.ReadProperties;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import models.Project;
+import models.TestCase;
 import models.User;
 import org.apache.http.protocol.HTTP;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
+import pages.DashboardPage;
 import pages.LoginPage;
 import services.BrowserServices;
 import services.ProjectService;
@@ -19,13 +22,15 @@ import static io.restassured.RestAssured.given;
 
 @Listeners(InvokedListner.class)
 public class BaseTest {
-    protected Project setupProject;
     protected User setupUser;
+    protected Project setupProject;
+    protected TestCase setupCase;
     protected ProjectService projectService;
 
     protected WebDriver driver;
     protected WaitServices waitsService;
     protected LoginPage loginPage;
+    protected DashboardPage dashboardPage;
 
     @BeforeSuite // beforeSuite???
     public void createData() {
@@ -37,6 +42,7 @@ public class BaseTest {
                 .header("X-Api-Key", ReadProperties.getApiKey())
                 .header(HTTP.CONTENT_TYPE, ContentType.JSON);
         setupProject =  projectService.addSetupProject();
+        setupCase = TestCase.builder().title(new Faker().rockBand().name()).build();
     }
 
     @BeforeMethod
@@ -50,6 +56,8 @@ public class BaseTest {
         loginPage.enterPassword(setupUser.getPassword());
         loginPage.clickLoginButton();
         // loginPage.successfulLogIn();
+        dashboardPage = new DashboardPage(driver, false);
+        dashboardPage.selectProjectByText(setupProject.getName());
     }
 
     @AfterMethod

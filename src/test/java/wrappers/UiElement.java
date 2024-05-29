@@ -84,7 +84,6 @@ public class UiElement implements WebElement {
         return webElement.findElements(locator);
     }
 
-    //for dropdown wrapper if needed
     public List<UiElement> findUiElements(By locator) {
         List<UiElement> uiElementsList = new ArrayList<UiElement>();
         for (WebElement webElement : findElements(locator)) {
