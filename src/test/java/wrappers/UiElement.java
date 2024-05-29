@@ -76,7 +76,7 @@ public class UiElement implements WebElement {
 
     @Override
     public String getText() {
-        return webElement.getText();
+        return webElement.getText().trim();
     }
 
     @Override
