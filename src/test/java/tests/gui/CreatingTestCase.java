@@ -9,8 +9,8 @@ import pages.casePages.CreateCasePage;
 public class CreatingTestCase extends BaseTest {
 
     @Test
-    public void creatingTC() {
-        dashboardPage.startTestCaseCreating();
+    public void creatingTC() { // create very first case
+        dashboardPage.startTestCaseCreating(); // работает не трогаем
         AllCasePage allCasePage = new AllCasePage(driver);
         allCasePage.startFirstTestCreating(); // opening Create TC modal window
         CreateCasePage createCasePage = new CreateCasePage(driver);

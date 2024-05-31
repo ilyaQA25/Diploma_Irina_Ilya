@@ -28,7 +28,7 @@ public class CreateCasePage extends BasePage {  // move TO AllCasePage ???????
         return new Button(driver, createCaseButtonLocator);
     }
 
-    public void enterCaseTitle(String caseName) {
+    public void enterCaseTitle(String caseName) { // void or this.CreateCasePage??????
         getCaseTitleInput().sendKeys(caseName);
     }
 
