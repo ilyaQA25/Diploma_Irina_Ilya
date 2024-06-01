@@ -29,7 +29,7 @@ public class ApiTest extends BaseApiTest {
         gson = new Gson();
         try {
              jsonProjectDoc = FileUtils.readFileToString(new File(ApiTest.class.getClassLoader()
-                    .getResource("dataApiTest/data.json").getPath()));
+                    .getResource("dataApiTest/projectForApiTest.json").getPath()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

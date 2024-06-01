@@ -41,7 +41,7 @@ public class BrowserServices {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ReadProperties.timeout()));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         return driver;
     }
 

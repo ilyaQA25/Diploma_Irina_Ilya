@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import wrappers.Button;
 import wrappers.Input;
+import wrappers.TextMessage;
 
 public class LoginPage extends BasePage {
 
@@ -36,8 +37,8 @@ public class LoginPage extends BasePage {
         return new Button(driver, logInButtonLocator);
     }
 
-    public WebElement getErrorMessage(){
-        return waitsService.waitForVisibility(errorMessageLocator);
+    public TextMessage getErrorMessage(){
+        return new TextMessage(driver, errorMessageLocator);
     }
 
     public LoginPage enterEmail(String email) {

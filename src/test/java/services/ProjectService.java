@@ -21,6 +21,29 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
+    public Project addSetupProject() {
+        return given()
+                .body(ProjectService.class.getClassLoader().getResourceAsStream("dataApiTest/setupProject.json"))
+                .log().body()
+                .post(Endpoints.ADD_PROJECT)
+                .then()
+                .log().body()
+                .extract()
+                .as(Project.class);
+    }
+
+    @Override
+    public int deleteProject(int projectID) {
+        return given()
+                .pathParam("projectID", projectID)
+                .delete(Endpoints.DELETE_PROJECT_BY_ID)
+                .then()
+                .log().body()
+                .extract()
+                .statusCode();
+    }
+
+    @Override
     public int getProjectByInvalidId(int projectID) {
         return given()
                 .pathParam("projectID", projectID)

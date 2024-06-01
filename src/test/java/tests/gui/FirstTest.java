@@ -1,15 +1,17 @@
 package tests.gui;
 
-import configuration.ReadProperties;
-import org.openqa.selenium.WebDriver;
+import baseEntities.BaseTest;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import services.BrowserServices;
+import pages.DashboardPage;
+import pages.casePages.CreateCasePage;
+import wrappers.Dropdown;
 
-public class FirstTest {
+public class FirstTest extends BaseTest {
+
     @Test
     public void test() {
-        BrowserServices browserServices = new BrowserServices();
-        WebDriver driver = browserServices.getDriver();
-        driver.get(ReadProperties.getUrl());
+
     }
 }

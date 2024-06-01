@@ -14,6 +14,10 @@ public class Button {
         uiElement.click();
     }
 
+    public String getText() {
+        return uiElement.getText();
+    }
+
     public void submit() {
         uiElement.submit();
     }
