@@ -13,10 +13,8 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.DashboardPage;
 import pages.LoginPage;
-import pages.casePages.AllCasePage;
 import services.BrowserServices;
 import services.ProjectService;
-import services.TestCaseService;
 import services.WaitServices;
 import utils.InvokedListner;
 
@@ -36,7 +34,7 @@ public class BaseTest {
 
     @BeforeSuite // beforeSuite???
     public void createData() {
-        setupUser =  User.builder().email(ReadProperties.getUsername())
+       setupUser =  User.builder().email(ReadProperties.getUsername())
                 .password(ReadProperties.getPassword()).build();
         projectService = new ProjectService();
         RestAssured.baseURI = ReadProperties.getBaseApiUrl();
@@ -54,7 +52,7 @@ public class BaseTest {
         waitsService = new WaitServices(driver);
 
         driver.get(ReadProperties.getUrl());
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(driver, false);
         loginPage.successfulLogIn(setupUser);
         dashboardPage = new DashboardPage(driver, false);
         dashboardPage.selectProjectByText(setupProject.getName());
