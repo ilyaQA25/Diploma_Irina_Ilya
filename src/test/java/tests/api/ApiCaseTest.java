@@ -32,6 +32,7 @@ public class ApiCaseTest extends BaseApiTest {
             throw new RuntimeException(e);
         }
         createdProject  = gson.fromJson(jsonProjectDoc, Project.class);
+        createdProject = projectService.addProject(createdProject);
 
         try {
             jsonCaseDoc = FileUtils.readFileToString(new File(ApiCaseTest.class.getClassLoader()
@@ -39,9 +40,8 @@ public class ApiCaseTest extends BaseApiTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        expectedTestCase = gson.fromJson(jsonCaseDoc, TestCase.class);
 
-        createdProject = projectService.addProject(createdProject);
+        expectedTestCase = gson.fromJson(jsonCaseDoc, TestCase.class);
     }
 
     @Test(testName = "Add case", description = "Add case to project")

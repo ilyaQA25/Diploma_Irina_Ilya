@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class ApiProjectTest extends BaseApiTest {
-
     private Project expectedProject;
     private Project actualProject;
     private String jsonProjectDoc;
@@ -27,7 +26,6 @@ public class ApiProjectTest extends BaseApiTest {
             throw new RuntimeException(e);
         }
         expectedProject  = gson.fromJson(jsonProjectDoc, Project.class);
-
     }
 
     @Test(testName = "Add project", description = "Add project")

@@ -12,18 +12,16 @@ import services.TestCaseService;
 import static io.restassured.RestAssured.given;
 
 public class BaseApiTest {
-
     protected TestCaseService testCaseService;
     protected ProjectService projectService;
     protected Gson gson;
 
-
     @BeforeClass
     public void setupApi() {
         gson = new Gson();
-
         testCaseService = new TestCaseService();
         projectService = new ProjectService();
+
         RestAssured.baseURI = ReadProperties.getBaseApiUrl();
         RestAssured.requestSpecification = given()
                 .header("X-Api-Key", ReadProperties.getApiKey())
