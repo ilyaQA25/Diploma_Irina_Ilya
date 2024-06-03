@@ -9,7 +9,8 @@ import pages.casePages.AllCasePage;
 import pages.casePages.CreateCasePage;
 
 public class DeleteTest extends BaseTest {
-
+// тесты на удаление -- делать отдельно пока
+    // решим как исправить позже
     protected AllCasePage allCasePage;
 
     @Test
