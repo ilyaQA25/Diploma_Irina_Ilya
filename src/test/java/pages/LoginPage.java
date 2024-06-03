@@ -66,6 +66,6 @@ public class LoginPage extends BasePage {
       this.enterEmail("rtrtyrt")
               .enterPassword("456456")
               .clickLoginButton();
-      return new LoginPage(driver,true);
+      return new LoginPage(driver);
     }
 }
