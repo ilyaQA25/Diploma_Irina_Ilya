@@ -6,6 +6,5 @@
             <class name="tests.api.ApiCaseTest"/>
             <class name="tests.api.ApiProjectTest"/>
         </classes>
-
     </test>
 </suite>
