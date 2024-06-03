@@ -12,5 +12,6 @@ public class LoginTest extends BaseTest {
     public void correctLoginTest() {
         NavigationSteps navigationSteps = new NavigationSteps(driver);
         navigationSteps.successLogin(User.builder().build());
+        //Assert
     }
 }
