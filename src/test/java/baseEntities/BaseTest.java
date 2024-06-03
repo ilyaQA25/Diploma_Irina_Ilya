@@ -52,7 +52,7 @@ public class BaseTest {
         waitsService = new WaitServices(driver);
 
         driver.get(ReadProperties.getUrl());
-        loginPage = new LoginPage(driver, false);
+        loginPage = new LoginPage(driver);
         loginPage.successfulLogIn(setupUser);
         dashboardPage = new DashboardPage(driver);
         //dashboardPage.selectProjectByText(setupProject.getName());

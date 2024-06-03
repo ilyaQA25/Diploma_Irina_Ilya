@@ -20,10 +20,6 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public LoginPage(WebDriver driver, boolean isOpenedByUrl) {
-        super(driver);
-    }
-
     @Override
     protected By getPageIdentifier() {
         return emailInputLocator;
@@ -59,11 +55,11 @@ public class LoginPage extends BasePage {
         getLoginButton().click();
     }
 
-   public LoginPage successfulLogIn(User user) {
+   public DashboardPage successfulLogIn(User user) {
         this.enterEmail(user.getEmail())
                 .enterPassword(user.getPassword())
                 .clickLoginButton();
-        return new LoginPage(driver, true);
+        return new DashboardPage(driver);
     }
 
     public LoginPage incorrectLogin(User user){
