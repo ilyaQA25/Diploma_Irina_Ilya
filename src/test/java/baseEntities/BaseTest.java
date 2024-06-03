@@ -54,7 +54,7 @@ public class BaseTest {
         driver.get(ReadProperties.getUrl());
         loginPage = new LoginPage(driver, false);
         loginPage.successfulLogIn(setupUser);
-        dashboardPage = new DashboardPage(driver, false);
+        dashboardPage = new DashboardPage(driver);
         dashboardPage.selectProjectByText(setupProject.getName());
     }
 
