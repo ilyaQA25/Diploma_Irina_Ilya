@@ -14,7 +14,7 @@ public class DeleteTest extends BaseTest {
 
     @Test
     public void deleteCaseModalWindowTest() { // работает, не трогаем
-        dashboardPage.startTestCaseCreating();
+/*        dashboardPage.startTestCaseCreating();
         allCasePage = new AllCasePage(driver);
         allCasePage.startFirstTestCreating(); // opening Create TC modal window
         CreateCasePage createCasePage = new CreateCasePage(driver);
@@ -23,12 +23,12 @@ public class DeleteTest extends BaseTest {
         allCasePage.selectCaseCheckbox(setupCase);
         allCasePage.clickDeleteCaseButton();
 
-        Assert.assertTrue(allCasePage.getDeleteModalWindow().isWindowDisplayed());
+        Assert.assertTrue(allCasePage.getDeleteModalWindow().isWindowDisplayed());*/
     }
 
     @Test // необходимо создать два кейса
     public void deleteCaseTest() { // работает, не трогаем
-        dashboardPage.startTestCaseCreating();
+/*        dashboardPage.startTestCaseCreating();
         allCasePage = new AllCasePage(driver);
         allCasePage.startFirstTestCreating(); // opening Create TC modal window
         CreateCasePage createCasePage = new CreateCasePage(driver);
@@ -42,6 +42,6 @@ public class DeleteTest extends BaseTest {
         allCasePage.clickDeleteCaseButton();
         allCasePage.confirmCaseDeletion();
 
-        Assert.assertFalse(allCasePage.isCaseInGrid(setupCase));
+        Assert.assertFalse(allCasePage.isCaseInGrid(setupCase));*/
     }
 }

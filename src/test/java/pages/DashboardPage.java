@@ -66,17 +66,6 @@ public class DashboardPage extends BasePage {
         return new Button(driver, leftSideBarTR);
     }
 
-
-
-    public void clickCreateTestCaseButton() {
-        getCreateTestCaseButton().click();
-    }
-
-    public AllCasePage startTestCaseCreating() {
-        clickCreateTestCaseButton();
-        return new AllCasePage(driver);
-    }
-
     public Button getProjectDropDownButton() {
         return new Button(driver, openDropdownButtonLocator);
     }
@@ -95,5 +84,4 @@ public class DashboardPage extends BasePage {
             getProjectDropdown().setByText(text);
         }
     }
-
 }

@@ -13,31 +13,45 @@ public class CreatingTcSteps extends BaseSteps {
     private AllCasePage allCasePage = new AllCasePage(driver);
 
     private CreateCasePage createCasePage = new CreateCasePage(driver);
+
     public CreatingTcSteps(WebDriver driver) {
         super(driver);
     }
-    public void startTestCaseCreating(){
-        dashboardPage.clickCreateTestCaseButton();
+
+    public void clickCreateTestCaseButton() {
+        dashboardPage.getCreateTestCaseButton().click();
     }
+
+    public AllCasePage startTestCaseCreating() {
+        clickCreateTestCaseButton();
+        return new AllCasePage(driver);
+    }
+
+    public void clickCreateFirstCaseButton() {
+        allCasePage.getCreateFirstCaseButton().click();
+    }
+
     public void startFirstTestCreating() { // void????
-        allCasePage.clickCreateFirstCaseButton();
+        clickCreateFirstCaseButton();
     }
+
     public void enterCaseTitle(String caseName) { // void or this.CreateCasePage??????
         createCasePage.getCaseTitleInput().sendKeys(caseName);
     }
+
     public void clickCreateButton() {
         createCasePage.getCreateCaseButton().click();
     }
 
     public boolean isCaseInGrid(TestCase testCase) {
-        for (UiElement uiElement: allCasePage.getCaseTitleList()) {
+        for (UiElement uiElement : allCasePage.getCaseTitleList()) {
             if (uiElement.getText().trim().equals(testCase.getTitle())) {
                 return true;
             }
         }
         return false;
     }
-    }
+}
 
 
 

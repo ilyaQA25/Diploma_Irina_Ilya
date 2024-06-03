@@ -118,9 +118,6 @@ public class AllCasePage extends BasePage {
         getCreateNewCaseButton().click();
     }
 
-    public void startFirstTestCreating() { // void????
-        clickCreateFirstCaseButton();
-    }
 
     public void createNewCase() { // void????
         clickCreateNewTestButton();
