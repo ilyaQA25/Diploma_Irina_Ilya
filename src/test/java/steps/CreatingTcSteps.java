@@ -35,6 +35,10 @@ public class CreatingTcSteps extends BaseSteps {
         clickCreateFirstCaseButton();
     }
 
+    public void startTestCreating() { // void????
+        allCasePage.getCreateCaseButton().click();
+    }
+
     public void enterCaseTitle(String caseName) { // void or this.CreateCasePage??????
         createCasePage.getCaseTitleInput().sendKeys(caseName);
     }
@@ -43,9 +47,9 @@ public class CreatingTcSteps extends BaseSteps {
         createCasePage.getCreateCaseButton().click();
     }
 
-    public boolean isCaseInGrid(TestCase testCase) {
+    public boolean isCaseInGrid(String title) {
         for (UiElement uiElement : allCasePage.getCaseTitleList()) {
-            if (uiElement.getText().trim().equals(testCase.getTitle())) {
+            if (uiElement.getText().trim().equals(title)) {
                 return true;
             }
         }

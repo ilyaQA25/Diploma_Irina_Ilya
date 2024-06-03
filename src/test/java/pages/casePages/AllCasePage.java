@@ -15,6 +15,7 @@ import java.util.List;
 
 public class AllCasePage extends BasePage {
     private final By createFirstTestLocator = By.xpath("//button[@data-testid='button-add_TC']");
+    private final By createTestLocator = By.xpath("//button[@data-testid='button-add']");
     private final By allCasesTitleLocator = By.xpath("//h2[@data-testid='text-title']");
     private final By createNewTestLocator = By.xpath("//button[@data-testid='button-add']");
     private final By caseTitleLocator = By.xpath("//div[@data-testid='cell-title']");
@@ -37,6 +38,10 @@ public class AllCasePage extends BasePage {
 
     public Button getCreateFirstCaseButton() {
         return new Button(driver, createFirstTestLocator);
+    }
+
+    public Button getCreateCaseButton() {
+        return new Button(driver, createTestLocator);
     }
 
     public Button getCreateNewCaseButton() {
@@ -65,11 +70,11 @@ public class AllCasePage extends BasePage {
         return checkboxesList;
     }
 
-    public Checkbox getCaseCheckbox(TestCase testCase) {
+    public Checkbox getCaseCheckbox(String titleOfCase) {
         List <Checkbox> checkboxesList = getCaseCheckboxesList();
         List <UiElement> uiElementList = getCaseTitleList();
         for (UiElement uiElement: uiElementList) {
-            if (uiElement.getText().trim().equals(testCase.getTitle())) {
+            if (uiElement.getText().trim().equals(titleOfCase)) {
                 return checkboxesList.get(uiElementList.indexOf(uiElement));
             }
         }
@@ -89,8 +94,8 @@ public class AllCasePage extends BasePage {
         getDeleteCaseButton().click();
     }
 
-    public void selectCaseCheckbox(TestCase testCase) {
-        getCaseCheckbox(testCase).select();
+    public void selectCaseCheckbox(String title) {
+        getCaseCheckbox(title).select();
     }
 
     public boolean isCaseInGrid(TestCase testCase) {
