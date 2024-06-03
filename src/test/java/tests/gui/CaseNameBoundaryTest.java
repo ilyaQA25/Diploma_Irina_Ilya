@@ -19,7 +19,8 @@ public class CaseNameBoundaryTest extends BaseTest {
         CreateCasePage createCasePage = new CreateCasePage(driver);
         createCasePage.enterCaseTitle(caseName);
         createCasePage.clickCreateButton();
-        Assert.assertTrue(allCasePage.isCaseInGrid(expectedCase));
+
+        Assert.assertTrue(new AllCasePage(driver).isCaseInGrid(expectedCase));
 //        Assert.assertTrue(allCasePage.isPageOpened());
     }
 }
