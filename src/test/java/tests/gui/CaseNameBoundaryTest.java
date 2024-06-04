@@ -22,7 +22,7 @@ public class CaseNameBoundaryTest extends BaseTest {
     }
 
     @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = PositiveCaseDataProvider.class)
-    public void boundaryCaseTitleTest(String caseName) {
+    public void boundaryCaseTitleTest(String caseName, boolean isCaseCreated) {
         TestCase expectedCase = TestCase.builder().title(caseName).build();
         dashboardPage.navigateToCasesPage();
         AllCasePage allCasePage = new AllCasePage(driver);
@@ -31,6 +31,6 @@ public class CaseNameBoundaryTest extends BaseTest {
         createCasePage.enterCaseTitle(caseName);
         createCasePage.clickCreateButton();
 
-        Assert.assertTrue(allCasePage.isCaseInGrid(expectedCase));
+        Assert.assertEquals(allCasePage.isCaseInGrid(expectedCase), isCaseCreated);
     }
 }
