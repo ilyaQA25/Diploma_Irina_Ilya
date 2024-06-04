@@ -66,7 +66,9 @@ public class DashboardPage extends BasePage {
         return new Button(driver, leftSideBarTR);
     }
 
-
+    public void navigateToCasesPage() {
+        getLeftSideBarTCButton().click();
+    }
 
     public void clickCreateTestCaseButton() {
         getCreateTestCaseButton().click();

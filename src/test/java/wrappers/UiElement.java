@@ -33,8 +33,13 @@ public class UiElement implements WebElement {
         try {
             webElement.click();
         } catch (ElementNotInteractableException exception) {
-            moveToElement();
-            webElement.click();
+            try {
+                moveToElement();
+                webElement.click();
+            } catch (ElementNotInteractableException exception1) {
+                moveToElement();
+                webElement.click();
+            }
         }
     }
 

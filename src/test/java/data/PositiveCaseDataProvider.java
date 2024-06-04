@@ -7,20 +7,15 @@ public class PositiveCaseDataProvider {
     public static Object[][] correctDataForCaseName() {
         return new Object[][]{
                 {"t"},
-                {"T"},
-                {"Te"},
-                {"Test"},
-                {"Test aqa"},
+                {"59"},
+                {"Entering valid data in testcase title"},
                 {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
                         "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco " +
                         "laboris nisi utQ"}, //199 chars
                 {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
                         "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco " +
                         "laboris nisi ut a"}, //200 chars
-                {"Test aqa 123"},
-                {"Test aqa #"},
-                {"^#%*("},
-                {"5989"},
+                {"!$&'()*+-/:;<=>?@[]^_`{|}~ # 123"},
         };
     }
 }
