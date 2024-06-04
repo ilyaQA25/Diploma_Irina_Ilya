@@ -22,7 +22,7 @@ public class CaseNameBoundaryTest extends BaseTest {
     }
 
     @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = PositiveCaseDataProvider.class)
-    public void boundaryCaseTitleTest(String caseName, boolean isCaseCreated) {
+    public void boundaryValidCaseTitleTest(String caseName, boolean isCaseCreated) {
         TestCase expectedCase = TestCase.builder().title(caseName).build();
         dashboardPage.navigateToCasesPage();
         AllCasePage allCasePage = new AllCasePage(driver);
