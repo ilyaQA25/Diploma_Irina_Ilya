@@ -26,6 +26,10 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
+    public DashboardPage(WebDriver driver) {
+        super(driver);
+    }
+
     @Override
     protected By getPageIdentifier() {
         return greetingMessageLocator;

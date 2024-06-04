@@ -8,14 +8,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.casePages.AllCasePage;
 import services.TestCaseService;
+import steps.CreatingTcSteps;
+import steps.DeleteTcSteps;
 
 public class DeleteTest extends BaseTest {
-// тесты на удаление -- делать отдельно пока
+    // тесты на удаление -- делать отдельно пока
     // решим как исправить позже
-    protected AllCasePage allCasePage;
+
     private TestCaseService testCaseService;
     private TestCase createdCase;
     private TestCase caseForDeletion;
+    private DeleteTcSteps deleteTcSteps;
+    private CreatingTcSteps creatingTcSteps;
 
     @BeforeClass
     public void addTestCasesToProject() {
@@ -29,23 +33,24 @@ public class DeleteTest extends BaseTest {
     @BeforeMethod
     public void navigateToCaseGrid() {
         dashboardPage.navigateToCasesPage();
-        allCasePage = new AllCasePage(driver);
+        deleteTcSteps = new DeleteTcSteps(driver);
+        creatingTcSteps = new CreatingTcSteps(driver);
     }
 
     @Test
     public void deleteCaseModalWindowTest() {
-        allCasePage.selectCaseCheckbox(createdCase);
-        allCasePage.clickDeleteCaseButton();
+        deleteTcSteps.selectCaseCheckbox(createdCase);
+        deleteTcSteps.clickDeleteCaseButton();
 
-        Assert.assertTrue(allCasePage.getDeleteModalWindow().isWindowDisplayed());
+        Assert.assertTrue(deleteTcSteps.isModalWindowDisplayed());
     }
 
     @Test
     public void deleteCaseTest() {
-        allCasePage.selectCaseCheckbox(caseForDeletion);
-        allCasePage.clickDeleteCaseButton();
-        allCasePage.confirmCaseDeletion();
+        deleteTcSteps.selectCaseCheckbox(caseForDeletion);
+        deleteTcSteps.clickDeleteCaseButton();
+        deleteTcSteps.confirmCaseDeletion();
 
-        Assert.assertFalse(allCasePage.isCaseInGrid(setupCase));
+        Assert.assertFalse(creatingTcSteps.isCaseInGrid(setupCase.getTitle()));
     }
 }
