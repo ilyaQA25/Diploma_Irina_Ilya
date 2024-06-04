@@ -33,18 +33,20 @@ public class BaseTest {
     protected WaitServices waitsService;
     protected LoginPage loginPage;
     protected DashboardPage dashboardPage;
+    protected Faker faker;
 
     @BeforeSuite // beforeSuite???
     public void createData() {
         setupUser =  User.builder().email(ReadProperties.getUsername())
                 .password(ReadProperties.getPassword()).build();
         projectService = new ProjectService();
+        faker = new Faker();
         RestAssured.baseURI = ReadProperties.getBaseApiUrl();
         RestAssured.requestSpecification = given()
                 .header("X-Api-Key", ReadProperties.getApiKey())
                 .header(HTTP.CONTENT_TYPE, ContentType.JSON);
         setupProject =  projectService.addSetupProject();
-        setupCase = TestCase.builder().title(new Faker().rockBand().name()).build();
+        setupCase = TestCase.builder().title(faker.rockBand().name()).build();
     }
 
     @BeforeMethod
