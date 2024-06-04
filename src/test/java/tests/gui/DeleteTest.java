@@ -1,44 +1,47 @@
 package tests.gui;
 
 import baseEntities.BaseTest;
+import models.TestCase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.casePages.AllCasePage;
-import pages.casePages.CreateCasePage;
+import services.TestCaseService;
 
 public class DeleteTest extends BaseTest {
 
     protected AllCasePage allCasePage;
+    private TestCaseService testCaseService;
+    private TestCase createdCase;
+    private TestCase caseForDeletion;
 
-    @Test
-    public void deleteCaseModalWindowTest() { // работает, не трогаем
-        dashboardPage.startTestCaseCreating();
+    @BeforeClass
+    public void addTestCasesToProject() {
+        testCaseService = new TestCaseService();
+        createdCase = TestCase.builder().title(faker.rockBand().name()).projectID(setupProject.getId()).build();
+        caseForDeletion = TestCase.builder().title("dummy case for Del").projectID(setupProject.getId()).build();
+        testCaseService.addCase(createdCase);
+        testCaseService.addCase(caseForDeletion);
+    }
+
+    @BeforeMethod
+    public void navigateToCaseGrid() {
+        dashboardPage.navigateToCasesPage();
         allCasePage = new AllCasePage(driver);
-        allCasePage.startFirstTestCreating(); // opening Create TC modal window
-        CreateCasePage createCasePage = new CreateCasePage(driver);
-        createCasePage.enterCaseTitle(setupCase.getTitle());
-        createCasePage.clickCreateButton();
-        allCasePage.selectCaseCheckbox(setupCase);
+    }
+
+    @Test(dependsOnMethods = "deleteCaseTest")
+    public void deleteCaseModalWindowTest() {
+        allCasePage.selectCaseCheckbox(createdCase);
         allCasePage.clickDeleteCaseButton();
 
         Assert.assertTrue(allCasePage.getDeleteModalWindow().isWindowDisplayed());
     }
 
-    @Test // необходимо создать два кейса
-    public void deleteCaseTest() { // работает, не трогаем
-        dashboardPage.startTestCaseCreating();
-        allCasePage = new AllCasePage(driver);
-        allCasePage.startFirstTestCreating(); // opening Create TC modal window
-        CreateCasePage createCasePage = new CreateCasePage(driver);
-        createCasePage.enterCaseTitle(setupCase.getTitle());
-        createCasePage.clickCreateButton();
-        allCasePage.createNewCase();
-        createCasePage.enterCaseTitle("For Deleting");
-        createCasePage.clickCreateButton();
-
-        allCasePage.selectCaseCheckbox(setupCase);
+    @Test
+    public void deleteCaseTest() {
+        allCasePage.selectCaseCheckbox(caseForDeletion);
         allCasePage.clickDeleteCaseButton();
         allCasePage.confirmCaseDeletion();
 
