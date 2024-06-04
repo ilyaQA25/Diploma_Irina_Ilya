@@ -1,7 +1,7 @@
 package tests.gui;
 
 import baseEntities.BaseTest;
-import data.PositiveCaseDataProvider;
+import data.CaseTitleDataProvider;
 import models.TestCase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -21,8 +21,8 @@ public class CaseNameBoundaryTest extends BaseTest {
         testCaseService.addCase(createdCase);
     }
 
-    @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = PositiveCaseDataProvider.class)
-    public void boundaryValidCaseTitleTest(String caseName, boolean isCaseCreated) {
+    @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)
+    public void boundaryValidCaseTitleTest(String caseName) {
         TestCase expectedCase = TestCase.builder().title(caseName).build();
         dashboardPage.navigateToCasesPage();
         AllCasePage allCasePage = new AllCasePage(driver);
@@ -31,6 +31,17 @@ public class CaseNameBoundaryTest extends BaseTest {
         createCasePage.enterCaseTitle(caseName);
         createCasePage.clickCreateButton();
 
-        Assert.assertEquals(allCasePage.isCaseInGrid(expectedCase), isCaseCreated);
+        Assert.assertTrue(allCasePage.isCaseInGrid(expectedCase));
+    }
+
+    @Test (dataProvider = "incorrectDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)
+    public void boundaryInvalidCaseTitleTest(String caseName) {
+        dashboardPage.navigateToCasesPage();
+        AllCasePage allCasePage = new AllCasePage(driver);
+        allCasePage.createNewCase();
+        CreateCasePage createCasePage = new CreateCasePage(driver);
+        createCasePage.enterCaseTitle(caseName);
+
+        Assert.assertFalse(createCasePage.isCreateButtonEnabled());
     }
 }

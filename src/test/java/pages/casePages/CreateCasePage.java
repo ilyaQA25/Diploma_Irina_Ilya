@@ -35,9 +35,13 @@ public class CreateCasePage extends BasePage {  // move TO AllCasePage ???????
     public void clickCreateButton() {
         getCreateCaseButton().click();
         try {
-            Thread.sleep(400);
+            Thread.sleep(250);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean isCreateButtonEnabled() {
+        return getCreateCaseButton().isEnabled();
     }
 }

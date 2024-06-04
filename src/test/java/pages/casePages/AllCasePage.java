@@ -128,7 +128,11 @@ public class AllCasePage extends BasePage {
 
     public void confirmCaseDeletion() {
         getDeleteModalWindow().confirmAction();
-        driver.navigate().refresh(); // добавила для стабильной работы
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void cancelCaseDeletion() {
