@@ -25,7 +25,7 @@ public class DeleteTcSteps extends BaseSteps {
 
     public void confirmCaseDeletion() {
         allCasePage.getDeleteModalWindow().confirmAction();
-        driver.navigate().refresh(); // добавила для стабильной работы
+        driver.navigate().refresh();
     }
 
     public boolean isModalWindowDisplayed() {
