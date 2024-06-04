@@ -6,6 +6,8 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.apache.http.protocol.HTTP;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import services.ProjectService;
 import services.TestCaseService;
 
@@ -16,11 +18,8 @@ public class BaseApiTest {
     protected ProjectService projectService;
     protected Gson gson;
 
-    @BeforeClass
+    @BeforeSuite
     public void setupApi() {
-        gson = new Gson();
-        testCaseService = new TestCaseService();
-        projectService = new ProjectService();
 
         RestAssured.baseURI = ReadProperties.getBaseApiUrl();
         RestAssured.requestSpecification = given()

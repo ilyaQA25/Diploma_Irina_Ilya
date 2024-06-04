@@ -23,7 +23,7 @@ import utils.InvokedListner;
 import static io.restassured.RestAssured.given;
 
 @Listeners(InvokedListner.class)
-public class BaseTest {
+public class BaseTest extends BaseApiTest{
     protected User setupUser;
     protected Project setupProject;
     protected TestCase setupCase;
@@ -35,16 +35,16 @@ public class BaseTest {
     protected DashboardPage dashboardPage;
     protected Faker faker;
 
-    @BeforeSuite // beforeSuite???
+    @BeforeClass // beforeSuite???
     public void createData() {
         setupUser =  User.builder().email(ReadProperties.getUsername())
                 .password(ReadProperties.getPassword()).build();
-        projectService = new ProjectService();
+        projectService = new ProjectService(); // remove?????
         faker = new Faker();
-        RestAssured.baseURI = ReadProperties.getBaseApiUrl();
-        RestAssured.requestSpecification = given()
-                .header("X-Api-Key", ReadProperties.getApiKey())
-                .header(HTTP.CONTENT_TYPE, ContentType.JSON);
+//        RestAssured.baseURI = ReadProperties.getBaseApiUrl();
+//        RestAssured.requestSpecification = given()
+//                .header("X-Api-Key", ReadProperties.getApiKey())
+//                .header(HTTP.CONTENT_TYPE, ContentType.JSON);
         setupProject =  projectService.addSetupProject();
         setupCase = TestCase.builder().title(faker.rockBand().name()).build();
     }
@@ -67,7 +67,7 @@ public class BaseTest {
         driver.quit();
     }
 
-    @AfterSuite
+    @AfterClass
     public void purge() {
         projectService.deleteProject(setupProject.getId());
     }
