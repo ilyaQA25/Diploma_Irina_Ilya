@@ -31,7 +31,7 @@ public class DeleteTest extends BaseTest {
         allCasePage = new AllCasePage(driver);
     }
 
-    @Test(dependsOnMethods = "deleteCaseTest")
+    @Test
     public void deleteCaseModalWindowTest() {
         allCasePage.selectCaseCheckbox(createdCase);
         allCasePage.clickDeleteCaseButton();
