@@ -58,7 +58,6 @@ public class BaseTest {
         loginPage.successfulLogIn(setupUser);
         dashboardPage = new DashboardPage(driver, false);
         dashboardPage.selectProjectByText(setupProject.getName());
-        System.out.println("Base test before meth");
     }
 
     @AfterMethod
