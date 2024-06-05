@@ -59,7 +59,7 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         loginPage.successfulLogIn(setupUser);
         dashboardPage = new DashboardPage(driver, false);
-        //dashboardPage.selectProjectByText(setupProject.getName());
+        dashboardPage.selectProjectByText(setupProject.getName());
     }
 
     @AfterMethod
