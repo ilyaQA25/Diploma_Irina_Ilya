@@ -43,6 +43,10 @@ public class AllCasePage extends BasePage {
         return new Button(driver, createNewTestLocator);
     }
 
+    public boolean isCreateFirstCaseButtonDisplayed() {
+        return new Button(driver, driver.findElement(createFirstTestLocator)).isEnabled();
+    }
+
     public Button getAllCasesButton() {
         return new Button(driver, allCasesButtonLocator);
     }
@@ -138,6 +142,4 @@ public class AllCasePage extends BasePage {
     public void cancelCaseDeletion() {
         getDeleteModalWindow().cancelAction();
     }
-
-
 }
