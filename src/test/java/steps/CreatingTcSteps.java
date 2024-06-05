@@ -54,7 +54,7 @@ public class CreatingTcSteps extends BaseSteps {
     }
 
     public void clickCreateButton() {
-        createCasePage.getCreateCaseButton().click();
+        createCasePage.clickCreateButton();
     }
 
     public boolean isCaseInGrid(String title) {
