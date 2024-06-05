@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import pages.casePages.AllCasePage;
 import pages.casePages.CreateCasePage;
 import services.TestCaseService;
-import steps.BoundaryTestSteps;
 import steps.CreatingTcSteps;
 import steps.DeleteTcSteps;
 import steps.NavigationSteps;
@@ -23,13 +22,6 @@ public class CaseNameBoundaryTest extends BaseTest {
     private NavigationSteps navigationSteps;
 //    private BoundaryTestSteps boundaryTestSteps;
 
-
-    @BeforeClass
-    public void addTestCaseToProject() {
-        testCaseService = new TestCaseService();
-        createdCase = TestCase.builder().title("dummy case").projectID(setupProject.getId()).build();
-        testCaseService.addCase(createdCase);
-    }
 
     @BeforeMethod
     public void intializeDrivers(){

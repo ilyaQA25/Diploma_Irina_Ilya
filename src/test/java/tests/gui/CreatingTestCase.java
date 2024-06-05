@@ -12,18 +12,9 @@ import steps.CreatingTcSteps;
 import steps.NavigationSteps;
 
 public class CreatingTestCase extends BaseTest {
-
-//    private TestCaseService testCaseService;
     private TestCase createdCase;
     private NavigationSteps navigationSteps;
     private CreatingTcSteps creatingTcSteps;
-
-
-//    @BeforeClass
-//    public void addTestCasesToProject() {
-//        testCaseService = new TestCaseService();
-//        testCaseService.addCase(setupCase);
-//    }
 
     @Test
     public void creatingTC() {
