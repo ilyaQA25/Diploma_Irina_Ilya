@@ -47,7 +47,7 @@ public class AllCasePage extends BasePage {
         return new Button(driver, allCasesButtonLocator);
     }
 
-    private List<UiElement> getCaseTitleList() {
+    public List<UiElement> getCaseTitleList() {
         List <WebElement> webElementsList = waitsService.waitForVisibilityAllElements(caseTitleLocator);
         List <UiElement> uiElementList = new ArrayList<>();
         for (WebElement webElement: webElementsList) {
