@@ -22,10 +22,6 @@ public class DashboardPage extends BasePage {
 
     private By greetingMessageLocator = By.xpath("//h1[@data-testid='text-dashboard-header-content']");
 
-    public DashboardPage(WebDriver driver, boolean b) {
-        super(driver);
-    }
-
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
