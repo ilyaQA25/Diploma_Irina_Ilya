@@ -32,12 +32,21 @@ public class CreatingTcSteps extends BaseSteps {
         allCasePage.getCreateFirstCaseButton().click();
     }
 
+    public void clickCreateNewCaseButton() {
+        allCasePage.getCreateNewCaseButton().click();
+    }
+
     public void startFirstTestCreating() { // void????
         clickCreateFirstCaseButton();
     }
 
-    public void startTestCreating() { // void????
-        allCasePage.getCreateNewCaseButton().click();
+    public void createNewCase() {
+//        if (allCasePage.isCreateFirstCaseButtonDisplayed()) {
+//            clickCreateFirstCaseButton();
+//        } else {
+//            clickCreateNewCaseButton();
+//        }
+        clickCreateNewCaseButton();
     }
 
     public void enterCaseTitle(String caseName) { // void or this.CreateCasePage??????
@@ -45,7 +54,7 @@ public class CreatingTcSteps extends BaseSteps {
     }
 
     public void clickCreateButton() {
-        createCasePage.getCreateCaseButton().click();
+        createCasePage.clickCreateButton();
     }
 
     public boolean isCaseInGrid(String title) {
@@ -56,6 +65,11 @@ public class CreatingTcSteps extends BaseSteps {
         }
         return false;
     }
+
+    public boolean isCreateButtonEnabled() {
+        return createCasePage.getCreateCaseButton().isEnabled();
+    }
+
 }
 
 

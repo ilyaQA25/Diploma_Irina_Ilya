@@ -6,40 +6,33 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.casePages.AllCasePage;
-import services.TestCaseService;
 import steps.CreatingTcSteps;
 import steps.DeleteTcSteps;
+import steps.NavigationSteps;
 
 public class DeleteTest extends BaseTest {
-    // тесты на удаление -- делать отдельно пока
-    // решим как исправить позже
-
-    private TestCaseService testCaseService;
-    private TestCase createdCase;
     private TestCase caseForDeletion;
     private DeleteTcSteps deleteTcSteps;
     private CreatingTcSteps creatingTcSteps;
+    private NavigationSteps navigationSteps;
 
     @BeforeClass
     public void addTestCasesToProject() {
-        testCaseService = new TestCaseService();
-        createdCase = TestCase.builder().title(faker.rockBand().name()).projectID(setupProject.getId()).build();
-        caseForDeletion = TestCase.builder().title("dummy case for Del").projectID(setupProject.getId()).build();
-        testCaseService.addCase(createdCase);
+        caseForDeletion = TestCase.builder().title("dummy case for Delete test").projectID(setupProject.getId()).build();
         testCaseService.addCase(caseForDeletion);
     }
 
     @BeforeMethod
     public void navigateToCaseGrid() {
-        dashboardPage.navigateToCasesPage();
         deleteTcSteps = new DeleteTcSteps(driver);
         creatingTcSteps = new CreatingTcSteps(driver);
+        navigationSteps = new NavigationSteps(driver);
+        navigationSteps.navigateAllCasesPage();
     }
 
     @Test
     public void deleteCaseModalWindowTest() {
-        deleteTcSteps.selectCaseCheckbox(createdCase);
+        deleteTcSteps.selectCaseCheckbox(setupCase);
         deleteTcSteps.clickDeleteCaseButton();
 
         Assert.assertTrue(deleteTcSteps.isModalWindowDisplayed());
@@ -51,6 +44,6 @@ public class DeleteTest extends BaseTest {
         deleteTcSteps.clickDeleteCaseButton();
         deleteTcSteps.confirmCaseDeletion();
 
-        Assert.assertFalse(creatingTcSteps.isCaseInGrid(setupCase.getTitle()));
+        Assert.assertFalse(creatingTcSteps.isCaseInGrid(caseForDeletion.getTitle()));
     }
 }

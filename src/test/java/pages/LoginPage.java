@@ -59,6 +59,6 @@ public class LoginPage extends BasePage {
         this.enterEmail(user.getEmail())
                 .enterPassword(user.getPassword())
                 .clickLoginButton();
-        return new DashboardPage(driver, true);
+        return new DashboardPage(driver);
     }
 }
