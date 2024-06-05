@@ -65,6 +65,11 @@ public class CreatingTcSteps extends BaseSteps {
         }
         return false;
     }
+
+    public boolean isCreateButtonEnabled() {
+        return createCasePage.getCreateCaseButton().isEnabled();
+    }
+
 }
 
 

@@ -13,14 +13,15 @@ import services.TestCaseService;
 import steps.BoundaryTestSteps;
 import steps.CreatingTcSteps;
 import steps.DeleteTcSteps;
+import steps.NavigationSteps;
 
 public class CaseNameBoundaryTest extends BaseTest {
     private TestCaseService testCaseService;
     private TestCase createdCase;
-
     private DeleteTcSteps deleteTcSteps;
     private CreatingTcSteps creatingTcSteps;
-    private BoundaryTestSteps boundaryTestSteps;
+    private NavigationSteps navigationSteps;
+//    private BoundaryTestSteps boundaryTestSteps;
 
 
     @BeforeClass
@@ -32,26 +33,27 @@ public class CaseNameBoundaryTest extends BaseTest {
 
     @BeforeMethod
     public void intializeDrivers(){
+        navigationSteps = new NavigationSteps(driver);
         deleteTcSteps = new DeleteTcSteps(driver);
         creatingTcSteps = new CreatingTcSteps(driver);
-        boundaryTestSteps = new BoundaryTestSteps(driver);
+//        boundaryTestSteps = new BoundaryTestSteps(driver);
     }
 
     @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)
     public void boundaryValidCaseTitleTest(String caseName) {
         TestCase expectedCase = TestCase.builder().title(caseName).build();
-        boundaryTestSteps.navigateToCasesPage();
+        navigationSteps.navigateAllCasesPage();
         creatingTcSteps.createNewCase();
-        boundaryTestSteps.enterCaseTitle(caseName);
-        boundaryTestSteps.clickCreateButton();
-        Assert.assertTrue(boundaryTestSteps.isCaseInGrid(expectedCase));
+        creatingTcSteps.enterCaseTitle(caseName);
+        creatingTcSteps.clickCreateButton();
+        Assert.assertTrue(creatingTcSteps.isCaseInGrid(caseName));
     }
 
     @Test (dataProvider = "incorrectDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)
     public void boundaryInvalidCaseTitleTest(String caseName) {
-        boundaryTestSteps.navigateToCasesPage();
+        navigationSteps.navigateAllCasesPage();
         creatingTcSteps.createNewCase();
-        boundaryTestSteps.enterCaseTitle(caseName);
-        Assert.assertFalse(boundaryTestSteps.isCreateButtonEnabled());
+        creatingTcSteps.enterCaseTitle(caseName);
+        Assert.assertFalse(creatingTcSteps.isCreateButtonEnabled());
     }
 }
