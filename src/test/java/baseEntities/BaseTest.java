@@ -28,6 +28,7 @@ public class BaseTest {
     protected Project setupProject;
     protected TestCase setupCase;
     protected ProjectService projectService;
+    protected TestCaseService testCaseService;
 
     protected WebDriver driver;
     protected WaitServices waitsService;
@@ -40,13 +41,16 @@ public class BaseTest {
         setupUser =  User.builder().email(ReadProperties.getUsername())
                 .password(ReadProperties.getPassword()).build();
         projectService = new ProjectService();
+        testCaseService = new TestCaseService();
         faker = new Faker();
         RestAssured.baseURI = ReadProperties.getBaseApiUrl();
         RestAssured.requestSpecification = given()
                 .header("X-Api-Key", ReadProperties.getApiKey())
                 .header(HTTP.CONTENT_TYPE, ContentType.JSON);
         setupProject =  projectService.addSetupProject();
-        setupCase = TestCase.builder().title(faker.rockBand().name()).build();
+        setupCase = TestCase.builder().title(faker.rockBand().name()).projectID(setupProject.getId()).build();
+        testCaseService.addCase(setupCase);
+
     }
 
     @BeforeMethod
@@ -54,11 +58,11 @@ public class BaseTest {
         driver = new BrowserServices().getDriver();
         this.setDriverToContext(iTestContext, driver);
         waitsService = new WaitServices(driver);
+
         driver.get(ReadProperties.getUrl());
         loginPage = new LoginPage(driver);
         loginPage.successfulLogIn(setupUser);
-        dashboardPage = new DashboardPage(driver, false);
-
+        dashboardPage = new DashboardPage(driver);
         dashboardPage.selectProjectByText(setupProject.getName());
     }
 
