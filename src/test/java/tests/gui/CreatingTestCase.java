@@ -32,7 +32,7 @@ public class CreatingTestCase extends BaseTest {
         navigationSteps = new NavigationSteps(driver);
         navigationSteps.navigateAllCasesPage();
         creatingTcSteps = new CreatingTcSteps(driver);
-        creatingTcSteps.startTestCreating();
+        creatingTcSteps.createNewCase();
         creatingTcSteps.enterCaseTitle(createdCase.getTitle());
         creatingTcSteps.clickCreateButton();
         Assert.assertTrue(creatingTcSteps.isCaseInGrid(createdCase.getTitle()));

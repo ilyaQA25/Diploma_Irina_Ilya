@@ -10,34 +10,50 @@ import org.testng.annotations.Test;
 import pages.casePages.AllCasePage;
 import pages.casePages.CreateCasePage;
 import services.TestCaseService;
+import steps.BoundaryTestSteps;
+import steps.CreatingTcSteps;
+import steps.DeleteTcSteps;
+import steps.NavigationSteps;
 
 public class CaseNameBoundaryTest extends BaseTest {
+    private TestCaseService testCaseService;
+    private TestCase createdCase;
+    private DeleteTcSteps deleteTcSteps;
+    private CreatingTcSteps creatingTcSteps;
+    private NavigationSteps navigationSteps;
+//    private BoundaryTestSteps boundaryTestSteps;
+
+
+    @BeforeClass
+    public void addTestCaseToProject() {
+        testCaseService = new TestCaseService();
+        createdCase = TestCase.builder().title("dummy case").projectID(setupProject.getId()).build();
+        testCaseService.addCase(createdCase);
+    }
 
     @BeforeMethod
-    public void addTestCaseToProject() {
-        dashboardPage.navigateToCasesPage();
-
+    public void intializeDrivers(){
+        navigationSteps = new NavigationSteps(driver);
+        deleteTcSteps = new DeleteTcSteps(driver);
+        creatingTcSteps = new CreatingTcSteps(driver);
+//        boundaryTestSteps = new BoundaryTestSteps(driver);
     }
 
     @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)
     public void boundaryValidCaseTitleTest(String caseName) {
         TestCase expectedCase = TestCase.builder().title(caseName).build();
-        AllCasePage allCasePage = new AllCasePage(driver);
-        allCasePage.createNewCase();
-        CreateCasePage createCasePage = new CreateCasePage(driver);
-        createCasePage.enterCaseTitle(caseName);
-        createCasePage.clickCreateButton();
-
-        Assert.assertTrue(allCasePage.isCaseInGrid(expectedCase));
+        navigationSteps.navigateAllCasesPage();
+        creatingTcSteps.createNewCase();
+        creatingTcSteps.enterCaseTitle(caseName);
+        creatingTcSteps.clickCreateButton();
+        Assert.assertTrue(creatingTcSteps.isCaseInGrid(caseName));
     }
 
     @Test (dataProvider = "incorrectDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)
     public void boundaryInvalidCaseTitleTest(String caseName) {
-        AllCasePage allCasePage = new AllCasePage(driver);
-        allCasePage.createNewCase();
-        CreateCasePage createCasePage = new CreateCasePage(driver);
-        createCasePage.enterCaseTitle(caseName);
-
-        Assert.assertFalse(createCasePage.isCreateButtonEnabled());
+        navigationSteps.navigateAllCasesPage();
+        creatingTcSteps.createNewCase();
+        creatingTcSteps.enterCaseTitle(caseName);
+        Assert.assertFalse(creatingTcSteps.isCreateButtonEnabled());
     }
 }
