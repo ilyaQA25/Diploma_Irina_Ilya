@@ -1,7 +1,6 @@
 package steps;
 
 import baseEntities.BaseSteps;
-import models.TestCase;
 import org.openqa.selenium.WebDriver;
 import pages.DashboardPage;
 import pages.casePages.AllCasePage;
@@ -18,8 +17,21 @@ public class EditTcSteps extends BaseSteps {
         editCasePage = new EditCasePage(driver);
     }
 
-    public void openCaseAttachmentTab() {
+    public void uploadFileAttachment(String filePath) {
         editCasePage.switchToAttachmentTab();
+        editCasePage.chooseFileForAttachment(filePath);
+    }
+
+    public void switchToAttachmentTab() {
+        editCasePage.switchToAttachmentTab();
+    }
+//
+//    public void chooseFileForUpload(String filePath) {
+//        editCasePage.chooseFileForAttachment(filePath);
+//    }
+
+    public boolean isDocumentAttached() {
+        return editCasePage.getDocAttachmentElement().isDisplayed();
     }
 
 
