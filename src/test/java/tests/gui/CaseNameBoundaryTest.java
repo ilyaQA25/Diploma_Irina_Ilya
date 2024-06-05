@@ -19,7 +19,7 @@ public class CaseNameBoundaryTest extends BaseTest {
 
     }
 
-    @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class, priority = 1)
+    @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)
     public void boundaryValidCaseTitleTest(String caseName) {
         TestCase expectedCase = TestCase.builder().title(caseName).build();
         AllCasePage allCasePage = new AllCasePage(driver);
