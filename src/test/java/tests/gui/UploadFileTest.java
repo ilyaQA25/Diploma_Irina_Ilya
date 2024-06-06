@@ -18,7 +18,6 @@ public class UploadFileTest extends BaseTest {
     @Test
     public void uploadImageTest() {
         String fileForUpload = UploadFileTest.class.getClassLoader().getResource("TestTXTaqa.txt").getPath();
-
         navigationSteps = new NavigationSteps(driver);
         editTcSteps = new EditTcSteps(driver);
         navigationSteps.navigateAllCasesPage();
