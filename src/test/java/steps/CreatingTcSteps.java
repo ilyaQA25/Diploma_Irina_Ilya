@@ -41,11 +41,6 @@ public class CreatingTcSteps extends BaseSteps {
     }
 
     public void createNewCase() {
-//        if (allCasePage.isCreateFirstCaseButtonDisplayed()) {
-//            clickCreateFirstCaseButton();
-//        } else {
-//            clickCreateNewCaseButton();
-//        }
         clickCreateNewCaseButton();
     }
 
@@ -68,6 +63,14 @@ public class CreatingTcSteps extends BaseSteps {
 
     public boolean isCreateButtonEnabled() {
         return createCasePage.getCreateCaseButton().isEnabled();
+    }
+
+    public String getHintTitleErrorText() {
+        return createCasePage.getHintTitleErrorText().trim();
+    }
+
+    public boolean isHintTitleErrorDisplayed() {
+        return createCasePage.isHintTitleErrorDisplayed();
     }
 
 }
