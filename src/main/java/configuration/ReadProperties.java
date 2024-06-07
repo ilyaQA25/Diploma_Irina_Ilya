@@ -24,10 +24,6 @@ public class ReadProperties {
         return properties.getProperty("baseApiUrl");
     }
 
-//    public static String getLoginUrl() {
-//        return getBaseUrl()+properties.getProperty("loginEndpoint");
-//    }
-
     public static String getUsername() {
         return properties.getProperty("username");
     }

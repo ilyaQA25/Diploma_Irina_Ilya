@@ -36,20 +36,24 @@ public class BaseTest {
     protected DashboardPage dashboardPage;
     protected Faker faker;
 
-    @BeforeSuite // beforeSuite???
+    @BeforeTest
+    public void auth() {
+        RestAssured.baseURI = ReadProperties.getBaseApiUrl();
+        RestAssured.requestSpecification = given()
+                .header("X-Api-Key", ReadProperties.getApiKey())
+                .header(HTTP.CONTENT_TYPE, ContentType.JSON);
+    }
+
+    @BeforeClass
     public void createData() {
         setupUser =  User.builder().email(ReadProperties.getUsername())
                 .password(ReadProperties.getPassword()).build();
         projectService = new ProjectService();
         testCaseService = new TestCaseService();
         faker = new Faker();
-        RestAssured.baseURI = ReadProperties.getBaseApiUrl();
-        RestAssured.requestSpecification = given()
-                .header("X-Api-Key", ReadProperties.getApiKey())
-                .header(HTTP.CONTENT_TYPE, ContentType.JSON);
         setupProject =  projectService.addSetupProject();
         setupCase = TestCase.builder().title(faker.rockBand().name()).projectID(setupProject.getId()).build();
-        testCaseService.addCase(setupCase);
+        setupCase = testCaseService.addCase(setupCase);
 
     }
 
@@ -71,7 +75,7 @@ public class BaseTest {
         driver.quit();
     }
 
-    @AfterSuite
+    @AfterClass
     public void purge() {
         projectService.deleteProject(setupProject.getId());
     }

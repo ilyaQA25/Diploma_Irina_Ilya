@@ -41,7 +41,7 @@ public class CreateCasePage extends BasePage {
     public void clickCreateButton() {
         getCreateCaseButton().click();
         try {
-            Thread.sleep(250);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
