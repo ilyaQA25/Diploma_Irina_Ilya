@@ -15,6 +15,7 @@ public class UploadFileTest extends BaseTest {
     private NavigationSteps navigationSteps;
     private EditTcSteps editTcSteps;
 
+
     @Test
     public void uploadImageTest() {
         String fileForUpload = UploadFileTest.class.getClassLoader().getResource("TestTXTaqa.txt").getPath();

@@ -18,7 +18,7 @@ public class BaseApiTest {
     protected ProjectService projectService;
     protected Gson gson;
 
-    @BeforeTest
+    @BeforeClass
     public void setupApi() {
         RestAssured.baseURI = ReadProperties.getBaseApiUrl();
         RestAssured.requestSpecification = given()

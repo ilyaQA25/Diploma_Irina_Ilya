@@ -20,7 +20,6 @@ public class CaseNameBoundaryTest extends BaseTest {
     private DeleteTcSteps deleteTcSteps;
     private CreatingTcSteps creatingTcSteps;
     private NavigationSteps navigationSteps;
-//    private BoundaryTestSteps boundaryTestSteps;
 
 
     @BeforeMethod
@@ -28,7 +27,6 @@ public class CaseNameBoundaryTest extends BaseTest {
         navigationSteps = new NavigationSteps(driver);
         deleteTcSteps = new DeleteTcSteps(driver);
         creatingTcSteps = new CreatingTcSteps(driver);
-//        boundaryTestSteps = new BoundaryTestSteps(driver);
     }
 
     @Test (dataProvider = "correctDataForTestCaseName", dataProviderClass = CaseTitleDataProvider.class)

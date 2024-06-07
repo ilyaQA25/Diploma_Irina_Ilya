@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel all classes Suite">
+<!--    <test name="ApiCRUD tests" parallel="classes" thread-count="2">-->
+<!--        <classes>-->
+<!--            <class name="tests.api.ApiCaseTest"/>-->
+<!--            <class name="tests.api.ApiProjectTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="Gui tests" parallel="classes" thread-count="2">
+        <classes>
+<!--            <class name="tests.gui.CreatingTestCase"/>-->
+<!--            <class name="tests.gui.HintNegativeTests"/>-->
+<!--            <class name="tests.gui.CaseNameBoundaryTest"/>-->
+            <class name="tests.gui.DeleteTest"/>
+            <class name="tests.gui.UploadFileTest"/>
+        </classes>
+    </test>
+</suite>
