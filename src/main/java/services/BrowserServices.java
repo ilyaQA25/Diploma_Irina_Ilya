@@ -48,7 +48,7 @@ public class BrowserServices {
         chromeOptions.addArguments("--silent");
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--incognito");
-        //chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
 
         return chromeOptions;
     }
