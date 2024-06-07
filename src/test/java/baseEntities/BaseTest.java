@@ -53,7 +53,7 @@ public class BaseTest {
         faker = new Faker();
         setupProject =  projectService.addSetupProject();
         setupCase = TestCase.builder().title(faker.rockBand().name()).projectID(setupProject.getId()).build();
-        testCaseService.addCase(setupCase);
+        setupCase = testCaseService.addCase(setupCase);
 
     }
 
