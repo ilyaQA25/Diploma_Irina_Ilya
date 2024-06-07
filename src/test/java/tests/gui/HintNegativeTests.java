@@ -27,12 +27,12 @@ public class HintNegativeTests extends BaseTest {
                 "(leading/trailing white spaces not counted).");
     }
 
-   /* @Test
+   @Test
     public void failedOnPurposeTest() {
         navigationSteps.navigateAllCasesPage();
         creatingTcSteps.createNewCase();
         creatingTcSteps.enterCaseTitle("     ");
 
         Assert.assertEquals(creatingTcSteps.getHintTitleErrorText(), "Must have at least 1 characters ");
-    }*/
+    }
 }
