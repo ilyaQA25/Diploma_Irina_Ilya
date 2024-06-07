@@ -43,11 +43,15 @@ public class AllCasePage extends BasePage {
         return new Button(driver, createNewTestLocator);
     }
 
+    public boolean isCreateFirstCaseButtonDisplayed() {
+        return new Button(driver, driver.findElement(createFirstTestLocator)).isEnabled();
+    }
+
     public Button getAllCasesButton() {
         return new Button(driver, allCasesButtonLocator);
     }
 
-    private List<UiElement> getCaseTitleList() {
+    public List<UiElement> getCaseTitleList() {
         List <WebElement> webElementsList = waitsService.waitForVisibilityAllElements(caseTitleLocator);
         List <UiElement> uiElementList = new ArrayList<>();
         for (WebElement webElement: webElementsList) {
@@ -128,12 +132,14 @@ public class AllCasePage extends BasePage {
 
     public void confirmCaseDeletion() {
         getDeleteModalWindow().confirmAction();
-        driver.navigate().refresh(); // добавила для стабильной работы
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void cancelCaseDeletion() {
         getDeleteModalWindow().cancelAction();
     }
-
-
 }

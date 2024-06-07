@@ -20,6 +20,9 @@ public class ProjectService implements IProjectService {
                 .as(Project.class);
     }
 
+    /**
+     Creating project specified in: dataApiTest/setupProject.json
+     */
     @Override
     public Project addSetupProject() {
         return given()

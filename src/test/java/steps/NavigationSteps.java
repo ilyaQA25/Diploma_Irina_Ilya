@@ -1,27 +1,27 @@
 package steps;
 
 import baseEntities.BaseSteps;
-import io.qameta.allure.Step;
-import models.User;
+import models.TestCase;
 import org.openqa.selenium.WebDriver;
 import pages.DashboardPage;
-import pages.LoginPage;
-
+import pages.casePages.AllCasePage;
 
 public class NavigationSteps extends BaseSteps {
-    private LoginPage loginPage;
+
+    private DashboardPage dashboardPage;
+    private AllCasePage allCasePage;
     public NavigationSteps(WebDriver driver) {
         super(driver);
     }
-    @Step("correct Login")
-    public LoginPage successLogin(User user) {
-        LoginPage loginPage = new LoginPage(driver, false);
-        return loginPage.successfulLogIn(user);
+
+    public void navigateAllCasesPage() {
+        dashboardPage = new DashboardPage(driver);
+        dashboardPage.navigateToCasesPage();
     }
 
-    @Step("incorrect Login")
-    public LoginPage incorrectLogin(User user) {
-        loginPage = new LoginPage(driver,false);
-        return loginPage.incorrectLogin(user);
+    public void openSelectedCase(TestCase testCase) {
+        allCasePage = new AllCasePage(driver);
+        allCasePage.openCase(testCase);
     }
+
 }

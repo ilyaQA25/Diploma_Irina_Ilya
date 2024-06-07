@@ -1,23 +1,31 @@
 package tests.gui;
 
 import baseEntities.BaseTest;
+import models.TestCase;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.casePages.AllCasePage;
 import pages.casePages.CreateCasePage;
+import services.TestCaseService;
+import steps.CreatingTcSteps;
+import steps.NavigationSteps;
 
 public class CreatingTestCase extends BaseTest {
+    private TestCase createdCase;
+    private NavigationSteps navigationSteps;
+    private CreatingTcSteps creatingTcSteps;
 
     @Test
-    public void creatingTC() { // create very first testcase
-        dashboardPage.startTestCaseCreating(); // работает не трогаем
-        AllCasePage allCasePage = new AllCasePage(driver);
-        allCasePage.startFirstTestCreating(); // opening Create TC modal window
-        CreateCasePage createCasePage = new CreateCasePage(driver);
-        createCasePage.enterCaseTitle(setupCase.getTitle());
-        createCasePage.clickCreateButton();
-//
-        Assert.assertTrue(allCasePage.isCaseInGrid(setupCase));
+    public void creatingTC() {
+        createdCase = TestCase.builder().title(faker.rockBand().name()).projectID(setupProject.getId()).build();
 
+        navigationSteps = new NavigationSteps(driver);
+        navigationSteps.navigateAllCasesPage();
+        creatingTcSteps = new CreatingTcSteps(driver);
+        creatingTcSteps.createNewCase();
+        creatingTcSteps.enterCaseTitle(createdCase.getTitle());
+        creatingTcSteps.clickCreateButton();
+        Assert.assertTrue(creatingTcSteps.isCaseInGrid(createdCase.getTitle()));
     }
 }
