@@ -2,12 +2,15 @@ package tests.api;
 
 import baseEntities.BaseApiTest;
 import com.github.javafaker.Faker;
+import com.google.gson.Gson;
 import models.Project;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import services.ProjectService;
+import services.TestCaseService;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +22,10 @@ public class ApiProjectTest extends BaseApiTest {
 
     @BeforeClass
     public void dataSetup() {
+        gson = new Gson();
+        testCaseService = new TestCaseService();
+        projectService = new ProjectService();
+
         try {
             jsonProjectDoc = FileUtils.readFileToString(new File(ApiCaseTest.class.getClassLoader()
                     .getResource("dataApiTest/projectAPI.json").getPath()));
@@ -43,7 +50,7 @@ public class ApiProjectTest extends BaseApiTest {
         Assert.assertEquals(responseStatusCode, HttpStatus.SC_NOT_FOUND);
     }
 
-    @Test (testName = "Delete project", description = "Delete project existent project")
+    @Test (testName = "Delete project", description = "Delete project existent project", dependsOnMethods = "createProjectTest")
     public void deleteProject() {
         Project existentProject = actualProject;
         projectService.deleteProject(existentProject.getId());

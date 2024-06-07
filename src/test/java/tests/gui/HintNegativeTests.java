@@ -33,6 +33,7 @@ public class HintNegativeTests extends BaseTest {
         creatingTcSteps.createNewCase();
         creatingTcSteps.enterCaseTitle("     ");
 
-        Assert.assertEquals(creatingTcSteps.getHintTitleErrorText(), "Must have at least 1 characters");
+        Assert.assertEquals(creatingTcSteps.getHintTitleErrorText(), "Must have at least 1 characters " +
+                "(leading/trailing white spaces not counted).");
     }
 }

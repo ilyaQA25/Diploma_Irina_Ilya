@@ -2,6 +2,7 @@ package tests.api;
 
 import baseEntities.BaseApiTest;
 import com.github.javafaker.Faker;
+import com.google.gson.Gson;
 import models.Project;
 import models.TestCase;
 import org.apache.commons.io.FileUtils;
@@ -10,6 +11,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import services.ProjectService;
+import services.TestCaseService;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +27,9 @@ public class ApiCaseTest extends BaseApiTest {
 
     @BeforeClass
     public void dataSetup() {
+        gson = new Gson();
+        testCaseService = new TestCaseService();
+        projectService = new ProjectService();
 
         try {
              jsonProjectDoc = FileUtils.readFileToString(new File(ApiCaseTest.class.getClassLoader()
