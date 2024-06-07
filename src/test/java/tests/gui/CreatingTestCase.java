@@ -16,7 +16,7 @@ public class CreatingTestCase extends BaseTest {
         CreateCasePage createCasePage = new CreateCasePage(driver);
         createCasePage.enterCaseTitle(setupCase.getTitle());
         createCasePage.clickCreateButton();
-
+//
         Assert.assertTrue(allCasePage.isCaseInGrid(setupCase));
 
     }
