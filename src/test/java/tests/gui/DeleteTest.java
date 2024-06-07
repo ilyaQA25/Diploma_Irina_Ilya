@@ -21,7 +21,7 @@ public class DeleteTest extends BaseTest {
         caseForDeletion = TestCase.builder().title("dummy case for Delete test").projectID(setupProject.getId()).build();
         testCaseService.addCase(caseForDeletion);
     }
-//
+
     @BeforeMethod
     public void navigateToCaseGrid() {
         deleteTcSteps = new DeleteTcSteps(driver);
