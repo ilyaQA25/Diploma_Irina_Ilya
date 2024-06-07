@@ -30,7 +30,7 @@ public class DeleteTest extends BaseTest {
         navigationSteps.navigateAllCasesPage();
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void deleteCaseModalWindowTest() {
         deleteTcSteps.selectCaseCheckbox(setupCase);
         deleteTcSteps.clickDeleteCaseButton();
@@ -38,7 +38,7 @@ public class DeleteTest extends BaseTest {
         Assert.assertTrue(deleteTcSteps.isModalWindowDisplayed());
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void deleteCaseTest() {
         deleteTcSteps.selectCaseCheckbox(caseForDeletion);
         deleteTcSteps.clickDeleteCaseButton();

@@ -17,7 +17,7 @@ public class HintNegativeTests extends BaseTest {
         creatingTcSteps = new CreatingTcSteps(driver);
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void incorrectDataInputCaseTest() {
         navigationSteps.navigateAllCasesPage();
         creatingTcSteps.createNewCase();
@@ -27,7 +27,7 @@ public class HintNegativeTests extends BaseTest {
                 "(leading/trailing white spaces not counted).");
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void failedOnPurposeTest() {
         navigationSteps.navigateAllCasesPage();
         creatingTcSteps.createNewCase();

@@ -16,7 +16,7 @@ public class CreatingTestCase extends BaseTest {
     private NavigationSteps navigationSteps;
     private CreatingTcSteps creatingTcSteps;
 
-    @Test
+    @Test(groups = "smoke")
     public void creatingTC() {
         createdCase = TestCase.builder().title(faker.rockBand().name()).projectID(setupProject.getId()).build();
 
