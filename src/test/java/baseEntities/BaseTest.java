@@ -90,12 +90,12 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-//        driver.quit();
+        driver.quit();
     }
 
     @AfterTest
     public void purge() {
-//        projectService.deleteProject(setupProject.getId());
+        projectService.deleteProject(setupProject.getId());
     }
 
     public static void setDriverToContext(ITestContext iTestContext, WebDriver driver){
