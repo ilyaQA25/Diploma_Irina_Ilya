@@ -24,7 +24,7 @@ public class UploadFileTest extends BaseTest {
         navigationSteps.navigateAllCasesPage();
         navigationSteps.openSelectedCase(setupCase);
         editTcSteps.uploadFileAttachment(fileForUpload);
-
+//
         Assert.assertTrue(editTcSteps.isDocumentAttached());
     }
 }
